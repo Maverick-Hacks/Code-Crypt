@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import Bg from "@/public/bg.jpg";
-import { SignInForm } from "./components/sign-in-form";
+import { SignUpForm } from "./components/sign-up-form";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
       <div className="w-1/2 bg-cover max-md:hidden">
         <Image src={Bg} className="h-full object-cover" alt={"Background"} />
       </div>
-      <SignInForm />
+      <SignUpForm />
     </div>
   )
 }
