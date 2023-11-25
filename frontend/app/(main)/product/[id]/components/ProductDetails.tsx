@@ -5,12 +5,14 @@ import React from 'react'
 import Gallery from '@/components/gallery'
 import Info from '@/components/info'
 import { Product } from '@/types/index'
+import ProductList from '@/components/product-list'
 
 interface ProductProps {
   product: Product
+  products: Product[]
 }
 
-export const ProductDetails: React.FC<ProductProps> = ({ product }) => {
+export const ProductDetails: React.FC<ProductProps> = ({ product, products }) => {
   return (
     <div className='bg-white'>
       <div className='mx-auto max-w-7xl'>
@@ -22,7 +24,7 @@ export const ProductDetails: React.FC<ProductProps> = ({ product }) => {
             </div>
           </div>
           <hr className='my-10' />
-          {/* <ProductList title='Related Items' items={suggestedProducts} /> */}
+          <ProductList title='Related Items' items={products.slice(0, 4)} />
         </div>
       </div>
     </div>
