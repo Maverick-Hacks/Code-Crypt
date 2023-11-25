@@ -21,13 +21,21 @@ users_collection = db["users"]
 products_collection = db["products"]
 
 fashion_template = PromptTemplate(input_variables=['input'],template='You are an assistant suggesting helpful eco-friendly fashion tips. Suggest some fashion tips for "{input}"')
-llm = OpenAI(temperature=0.9)
+fashion_llm = OpenAI(temperature=0.9)
 fashion_memory = ConversationBufferMemory(input_key='input',memory_key='chat_history')
-fashion_suggestion = LLMChain(llm=llm, prompt=fashion_template, memory=fashion_memory, verbose=True)
+fashion_suggestion = LLMChain(llm=fashion_llm, prompt=fashion_template, memory=fashion_memory, verbose=True)
+
+keywords_template = PromptTemplate(input_variables=["content"],template='Suggest a curated set of keywords in python programming language array format based on "{content}". The system should analyze the input and recommend relevant terms from the following set only: [mens shirt, casual shirt, black, full-sleeve shirt, medium size, regular fit, blue shirt, pants, trousers, blue fit, slim fit, beige trousers, shirt, jacket, sports jacket, gym shoes, shoes, black and white, Skirt, black skirt, womens wear, black watch, metal strap, analog watch, watches, red, vest, beach wear, red vest, mens wear, digital watch, rubber strap]. If not found anything relatable, return "Keyword not matching in store"')
+keyword_llm = OpenAI()
+keyword_memory = ConversationBufferMemory(input_key="content",memory_key='keyword_history')
+keywords_suggestion = LLMChain(llm=keyword_llm, prompt=keywords_template, memory=keyword_memory, verbose=True)
 
 
 def ask(prompt):
     return fashion_suggestion.run(prompt)
+
+def generate_keywords(prompt):
+    return keywords_suggestion.run(prompt['msg'])
 
 @app.route('/ask', methods=['GET'])
 # {msg:'input'}
@@ -35,6 +43,13 @@ def get_bot_response():
     data = request.get_json()
     response = ask(data['msg'])
     print(fashion_memory.buffer)
+    return response
+
+@app.route('/generate', methods=['GET'])
+def get_keywords():
+    data = request.get_json()
+    response = generate_keywords(data)
+    print(keyword_memory.buffer)
     return response
 
 
