@@ -17,14 +17,16 @@ export default function Chat() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Render products based on the inputValue
     // setProducts(products)
+    toast('Feature under development!', {
+      icon: '🚧',
+    })
     setInputValue('')
   }
 
   return (
     <div className={fontPoppins.className + ' p-8'}>
-      <form onSubmit={handleSubmit}>
+      <div onSubmit={handleSubmit}>
         <div className='flex items-center gap-2 lg:px-24'>
           <Input
             type='text'
@@ -39,7 +41,7 @@ export default function Chat() {
             onChange={(e) => setInputValue(e.target.value)}
             className='placholder:pl-12'
           />
-          <Button type='submit' variant='flat'>
+          <Button type='submit' variant='flat' onClick={handleSubmit}>
             Submit
             <ChevronRight />
           </Button>
@@ -50,6 +52,7 @@ export default function Chat() {
               setTimeout(() => {
                 setProducts(data)
                 setLoading(false)
+                toast.remove()
                 toast.success('Products generated')
               }, 1500)
             }}
@@ -63,7 +66,7 @@ export default function Chat() {
             className='w-9'
           />
         </div>
-      </form>
+      </div>
       <div className='mt-12 lg:px-32'>
         {products && products.length > 0 ? (
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5'>
@@ -76,7 +79,7 @@ export default function Chat() {
           </div>
         ) : (
           <div className='flex h-64  w-full items-center justify-center'>
-            <p className='text-3xl font-bold'>Find your fashion</p>
+            <p className='text-3xl font-bold'></p>
           </div>
         )}
       </div>

@@ -6,28 +6,29 @@ import { Input, Button } from '@nextui-org/react'
 
 const routes = [
   {
-    label: 'Shop',
+    label: 'Home',
     href: '/',
     disabled: false,
   },
   {
-    label: 'Clothing',
-    href: '/clothing',
+    label: 'Explore',
+    href: '/search',
     disabled: false,
   },
   {
-    label: 'Beauty',
+    label: 'Fashion',
     href: '/beauty',
-    disabled: false,
+    disabled: true,
   },
   {
-    label: 'Furniture',
-    href: '/furniture',
-    disabled: false,
+    label: 'Accessories',
+    href: '/accessories',
+    disabled: true,
   },
+
   {
-    label: 'Grocery',
-    href: '/grocery',
+    label: 'Find',
+    href: '/chat',
     disabled: false,
   },
 ]
@@ -36,10 +37,16 @@ export default function NavBar() {
   return (
     <div className='flex h-24 w-full items-center justify-between gap-8 border-b bg-white px-24 py-8'>
       {/* <Image src={Logo} width={100} height={50} alt='Logo' /> */}
-      <h2 className={fontPoppinsBold.className + ' text-2xl'}>Green4U</h2>
+      <Link href='/'>
+        <h2 className={fontPoppinsBold.className + ' text-2xl'}>INTELLI STORE</h2>
+      </Link>
       <div className={fontPoppins.className + ' flex gap-8'}>
         {routes.map((route) => (
-          <Link href={route.href} key={route.label} className='text-lg font-medium text-[#807D7E]'>
+          <Link
+            href={!route.disabled ? route.href : ''}
+            key={route.label}
+            className='text-lg font-medium text-[#807D7E]'
+          >
             {route.label}
           </Link>
         ))}
