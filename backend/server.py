@@ -15,7 +15,7 @@ client = OpenAI()
 app = Flask(__name__)
 
 
-client = MongoClient("mongodb+srv://prabath:jNqyuWbkBgzkCMDo@cluster0.21vdk1e.mongodb.net/")
+client = MongoClient("mongodb+srv://parthasaradhi:Random2002@sample1.2jnqkhs.mongodb.net/")
 db = client["mydb"]
 users_collection = db["users"]
 products_collection = db["products"]

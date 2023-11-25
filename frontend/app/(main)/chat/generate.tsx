@@ -52,7 +52,6 @@ export const Generate: React.FC<ProductProps> = ({ data }) => {
             onClick={() => {
               setLoading(true)
               setTimeout(() => {
-                console.log(data.products)
                 setProducts(data.products)
                 setLoading(false)
                 toast.remove()

@@ -1,14 +1,14 @@
-"use client"
+'use client'
 
 import React from 'react'
 // import ProductList from '@/components/product-list'
 import Gallery from '@/components/gallery'
 import Info from '@/components/info'
-import { Product } from "@/types/index"
+import { Product } from '@/types/index'
 
 interface ProductProps {
-    product: Product;
-  }
+  product: Product
+}
 
 export const ProductDetails: React.FC<ProductProps> = ({ product }) => {
   return (

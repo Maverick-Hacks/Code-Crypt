@@ -74,9 +74,11 @@ export default function NavBar() {
           <Button isIconOnly color='default' aria-label='Like'>
             <User />
           </Button>
-          <Button isIconOnly color='default' aria-label='Like'>
-            <ShoppingCart />
-          </Button>
+          <Link href='/cart'>
+            <Button isIconOnly color='default' aria-label='Like'>
+              <ShoppingCart />
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
