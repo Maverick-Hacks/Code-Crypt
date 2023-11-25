@@ -20,22 +20,21 @@ db = client["mydb"]
 users_collection = db["users"]
 products_collection = db["products"]
 
+fashion_template = PromptTemplate(input_variables=['input'],template='You are an assistant suggesting helpful eco-friendly fashion tips. Suggest some fashion tips for "{input}"')
+llm = OpenAI(temperature=0.9)
+fashion_memory = ConversationBufferMemory(input_key='input',memory_key='chat_history')
+fashion_suggestion = LLMChain(llm=llm, prompt=fashion_template, memory=fashion_memory, verbose=True)
+
+
 def ask(prompt):
-    fashion_template = PromptTemplate(
-    input_variables=['input'],
-    template='suggest some fashion tips for {input}'
-    )
-    # fashion_memory = ConversationMemoryBufferMemory(input_key='input',memory_key='chat_history')
-    llm = OpenAI(temperature=0.9)
-    # fashion_suggestion = LLMChain(llm=llm, prompt=fashion_template, memory=fashion_memory, output_key='input' verbose=True)
-    fashion_suggestion = LLMChain(llm=llm, prompt=fashion_template, verbose=True)
     return fashion_suggestion.run(prompt)
 
 @app.route('/ask', methods=['GET'])
 # {msg:'input'}
 def get_bot_response():
-    userText = request.args.get('msg')
-    response = ask(userText)
+    data = request.get_json()
+    response = ask(data['msg'])
+    print(fashion_memory.buffer)
     return response
 
 
