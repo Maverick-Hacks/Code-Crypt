@@ -1,8 +1,11 @@
+'use client'
+
 import React from 'react'
 import { HeartIcon, Search, ShoppingCart, User } from 'lucide-react'
 import { fontPoppins, fontPoppinsBold, fontPoppinsMedium } from '@/config/fonts'
 import Link from 'next/link'
 import { Input, Button } from '@nextui-org/react'
+import { usePathname } from 'next/navigation'
 
 const routes = [
   {
@@ -34,6 +37,7 @@ const routes = [
 ]
 
 export default function NavBar() {
+  const pathname = usePathname()
   return (
     <div className='flex h-24 w-full items-center justify-between gap-8 border-b bg-white px-24 py-8'>
       {/* <Image src={Logo} width={100} height={50} alt='Logo' /> */}
@@ -45,7 +49,9 @@ export default function NavBar() {
           <Link
             href={!route.disabled ? route.href : ''}
             key={route.label}
-            className='text-lg font-medium text-[#807D7E]'
+            className={
+              pathname === route.href ? 'text-lg font-medium text-[#454444]' : 'text-lg font-medium text-[#807D7E]'
+            }
           >
             {route.label}
           </Link>

@@ -1,5 +1,7 @@
 import { fontPoppinsMedium } from '@/config/fonts'
 import { Button } from '@nextui-org/react'
+import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 import React from 'react'
 
 export default function Billboard() {
@@ -14,12 +16,17 @@ export default function Billboard() {
         <div className='absolute inset-0'>
           <div className='flex h-full flex-col items-center justify-center text-center text-3xl font-bold text-white first-letter:max-w-xs sm:max-w-xl sm:text-5xl lg:text-6xl'>
             <div className='flex flex-col items-start'>
-              <p>SUMMER</p>
-              <p>VALUE</p>
-              <p>PACK</p>
+              <p>FIND</p>
+              <p>YOUR</p>
+              <p>FASHION</p>
             </div>
             <div className='w-full'>
-              <Button className='mt-6 w-[40%] bg-white text-lg font-medium'>Shop Now</Button>
+              <Link href='/chat'>
+                <Button className='mt-6 w-[40%] bg-white text-lg font-medium'>
+                  <p>FIND YOURS</p>
+                  <ChevronRight className='ml-2' />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
