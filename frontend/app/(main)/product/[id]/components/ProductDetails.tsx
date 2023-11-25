@@ -1,14 +1,16 @@
-import ProductList from '@/components/product-list'
+"use client"
+
+import React from 'react'
+// import ProductList from '@/components/product-list'
 import Gallery from '@/components/gallery'
 import Info from '@/components/info'
-// import getProduct from '@/actions/get-product'
-// import getProducts from '@/actions/get-products'
-import { products } from '@/data/products'
+import { Product } from "@/types/index"
 
-export const revalidate = 0
-export default function ProductPage() {
-  const product = products[0]
-  const suggestedProducts = products.slice(1, 5)
+interface ProductProps {
+    product: Product;
+  }
+
+export const ProductDetails: React.FC<ProductProps> = ({ product }) => {
   return (
     <div className='bg-white'>
       <div className='mx-auto max-w-7xl'>
@@ -20,9 +22,11 @@ export default function ProductPage() {
             </div>
           </div>
           <hr className='my-10' />
-          <ProductList title='Related Items' items={suggestedProducts} />
+          {/* <ProductList title='Related Items' items={suggestedProducts} /> */}
         </div>
       </div>
     </div>
   )
 }
+
+export default ProductDetails
